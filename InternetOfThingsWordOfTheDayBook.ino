@@ -25,6 +25,7 @@
 
 #define LCD_WIDTH 20
 #define LCD_HEIGHT 4
+#define MAX(x, y) (((x) > (y)) ? (x) : (y)) // TODO: These are bad practice
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
 // initialize the library with the numbers of the interface pins
@@ -193,7 +194,7 @@ char* right_pad_string(char* src, int len_src, int len_new, char pad) {
   return padded_str;
 }
 
-void print_Word(Word wrd, int index) {
+void print_Word(Word wrd, int time_in_seconds) {
   // Print the entry
   char str[LCD_WIDTH + 1];
   strncpy(str, wrd.entry, LCD_WIDTH + 1); //TODO: Words should be hyphenated and not truncated
@@ -202,13 +203,21 @@ void print_Word(Word wrd, int index) {
   lcd.print(str);
 
   // Print the definition
+  print_definition_scrolling(wrd, time_in_seconds)
+}
+
+/**
+ * Prints the definition begining on the second line, and scrols to the bottom.
+ * 
+ * @param wrd             The word containing the definition to print.
+ * @param time_in_seconds The index to print.
+ */
+void print_definition_scrolling(Word wrd, int time_in_seconds) {
   int i;
   for (i = 1; i < MIN(wrd.num_lines_definition, LCD_HEIGHT - 1) + 1; i++) {
-    Serial.println(i);
-    index = index % wrd.num_lines_definition;
+    time_in_seconds = time_in_seconds % MAX(wrd.num_lines_definition - (LCD_HEIGHT - 1) + 1, 1);
     lcd.setCursor(0, i);
-    lcd.print(wrd.definition_lines[index]);
-    index++;
+    lcd.print(wrd.definition_lines[i - 1 + time_in_seconds]);
   }
 }
 
