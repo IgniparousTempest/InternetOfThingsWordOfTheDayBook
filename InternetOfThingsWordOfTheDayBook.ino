@@ -14,9 +14,8 @@
    LCD pin 14 (D7) -> Arduino digital pin 2
 
   For backlight:
-   LCD pin 16 (K) -> Arduino Ground
    LCD pin 15 (A) -> 220 ohm resistor -> Arduino 5V
-
+   LCD pin 16 (K) -> Arduino Ground
 */
 
 #include <LiquidCrystal.h> // LCD library
