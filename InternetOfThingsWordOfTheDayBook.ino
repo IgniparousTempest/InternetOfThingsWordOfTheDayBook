@@ -9,9 +9,9 @@
    LCD pin 5 (RW)  -> Arduino Ground
    LCD pin 6 (E)   -> Arduino digital pin 11
    LCD pin 11 (D4) -> Arduino digital pin 5
-   LCD pin 11 (D5) -> Arduino digital pin 4
-   LCD pin 11 (D6) -> Arduino digital pin 3
-   LCD pin 11 (D7) -> Arduino digital pin 2
+   LCD pin 12 (D5) -> Arduino digital pin 4
+   LCD pin 13 (D6) -> Arduino digital pin 3
+   LCD pin 14 (D7) -> Arduino digital pin 2
 
   For backlight:
    LCD pin 16 (K) -> Arduino Ground
